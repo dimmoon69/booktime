@@ -6,6 +6,7 @@
 !*backend/*/migrations
 !*backend/*/migrations/__init__.py
 .idea
+media
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,macos
