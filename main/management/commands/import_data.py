@@ -1,9 +1,11 @@
-from collections import Counter
 import csv
 import os.path
+from collections import Counter
+
 from django.core.files.images import ImageFile
 from django.core.management.base import BaseCommand
 from django.template.defaultfilters import slugify
+
 from main import models
 
 
