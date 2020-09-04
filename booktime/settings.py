@@ -103,6 +103,8 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = "main.User"
 
+LOGIN_REDIRECT_URL = '/'
+
 # Логирование
 LOGGING = {
     'version': 1,
