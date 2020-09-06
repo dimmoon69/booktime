@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Удалить адрес</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <p>Вы уверены, что хотите удалить его?</p>
+        <button type="submit" class="btn btn-primary">Удалить</button>
+    </form>
+{% endblock content %}

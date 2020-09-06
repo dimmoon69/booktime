@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Список ваших адресов:</h1>
+
+    {% for address in object_list %}
+        <p>
+            {{ address.name }}
+            {{ address.address1 }}
+            {{ address.address2 }}
+            {{ address.city }}
+            {{ address.get_country_display }}<br>
+        </p>
+        <p>
+            <a href="{% url "address_update" address.id %}">Обновить адрес</a>
+        </p>
+        <p>
+            <a href="{% url "address_delete" address.id %}">Удалить адрес</a>
+        </p>
+        {% if not forloop.last %}
+            <hr>
+        {% endif %}
+    {% endfor %}
+    <p>
+        <a href="{% url "address_create" %}">Добавить адрес</a>
+    </p>
+
+{% endblock content %}
