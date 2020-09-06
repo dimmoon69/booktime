@@ -90,3 +90,22 @@ class User(AbstractUser):
     objects = UserManager()
 
 
+class Address(models.Model):
+    """Адрес пользователя"""
+    SUPPORTED_COUNTRIES = (
+        ("uk", "Москва"),
+        ("us", "Московская обл."),
+    )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField("Наименование адреса", max_length=60)
+    address1 = models.CharField("Улица", max_length=60)
+    address2 = models.CharField("Дом-кв/оф", max_length=60, blank=True)
+    zip_code = models.CharField("Индекс", max_length=12, blank=True)
+    city = models.CharField("Город", max_length=60)
+    country = models.CharField("Регион", max_length=3, choices=SUPPORTED_COUNTRIES)
+
+    def __str__(self):
+        return ", ".join([self.name, self.address1, self.address2, self.zip_code, self.city, self.country])
+
+
