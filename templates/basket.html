@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Корзина</h2>
+        {% if formset %}
+            <p>Количество можно изменить.</p>
+            <form method="POST">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    <p>
+                        {{ form.instance.product.name }}
+                        {{ form }}
+                    </p>
+                {% endfor %}
+                <button type="submit" class="btn btn-default">Обновить корзину</button>
+            </form>
+        {% else %}
+            <p>Ваша корзина пуста.</p>
+        {% endif %}
+{% endblock content %}
+
+{% block js %}
+  {% if formset %}
+    {{ formset.media }}
+  {% endif %}
+{% endblock js %}
