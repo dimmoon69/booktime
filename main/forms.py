@@ -33,8 +33,8 @@ class UserCreationForm(DjangoUserCreationForm):
     def send_mail(self):
         logger.info("Отправка электронной почты для регистрации email=%s", self.cleaned_data["email"])
 
-        message = "Welcome {}".format(self.cleaned_data["email"])
-        send_mail("Welcome to BookTime", message, "site@booktime.domain", [self.cleaned_data["email"]], fail_silently=True)
+        message = "Добро пожаловать {}".format(self.cleaned_data["email"])
+        send_mail("Добро пожаловать в BookTime", message, "site@booktime.domain", [self.cleaned_data["email"]], fail_silently=True)
 
 
 class AuthenticationForm(forms.Form):
@@ -64,4 +64,16 @@ class AuthenticationForm(forms.Form):
         return self.user
 
 
-BasketLineFormSet = inlineformset_factory(models.Basket, models.BasketLine, fields=("quantity",), extra=0, widgets={"quantity": widgets.PlusMinusNumberInput()},)
+BasketLineFormSet = inlineformset_factory(models.Basket, models.BasketLine, fields=("quantity",), extra=0, widgets={"quantity": widgets.PlusMinusNumberInput()})
+
+
+class AddressSelectionForm(forms.Form):
+    """Форма заказа"""
+    billing_address = forms.ModelChoiceField(queryset=None)
+    shipping_address = forms.ModelChoiceField(queryset=None)
+
+    def __init__(self, user, *args, **kwargs):
+        super(). __init__(*args, **kwargs)
+        queryset = models.Address.objects.filter(user=user)
+        self.fields['billing_address'].queryset = queryset
+        self.fields['shipping_address'].queryset = queryset
