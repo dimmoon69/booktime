@@ -10,6 +10,8 @@ from main import views
 
 urlpatterns = [
 
+    path("order/done/", TemplateView.as_view(template_name="order_done.html"), name="checkout_done"),
+    path("order/address_select/", views.AddressSelectionView.as_view(), name="address_select"),
     path('basket/', views.manage_basket, name="basket"),
     path("add_to_basket/", views.add_to_basket, name="add_to_basket"),
     path("address/", views.AddressListView.as_view(), name="address_list"),
