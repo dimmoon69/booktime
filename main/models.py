@@ -1,5 +1,6 @@
 import logging
 
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import (AbstractUser,
@@ -45,7 +46,7 @@ class Product(models.Model):
     """Товар"""
     tags = models.ManyToManyField(ProductTag, verbose_name='Тэг', blank=True)
     name = models.CharField('Название', max_length=32)
-    description = models.TextField('Описание', blank=True)
+    description = RichTextUploadingField('Описание', blank=True)
     price = models.DecimalField('Стоимость', max_digits=6, decimal_places=2)
     slug = models.SlugField('URL', max_length=48)
     active = models.BooleanField('Добавить', default=True)
