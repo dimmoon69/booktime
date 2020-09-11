@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'booktime.urls'
+ROOT_URLCONF = '_project_.urls'
 
 TEMPLATES = [
     {
@@ -63,7 +63,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'booktime.wsgi.application'
+WSGI_APPLICATION = '_project_.wsgi.application'
 
 
 # Password validation
